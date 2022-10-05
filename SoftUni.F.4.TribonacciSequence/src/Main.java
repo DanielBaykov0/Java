@@ -20,5 +20,28 @@ public class Main {
             n2 = n3;
             n3 = n4;
         }
+
+        System.out.println();
+        print(num);
     }
+
+    public static int getTribonacci(int num) {
+        if (num <= 2) {
+            return 1;
+        }
+
+        if (num == 3) {
+            return 2;
+        } else {
+            return getTribonacci(num - 3) + getTribonacci(num - 2) + getTribonacci(num -1);
+        }
+    }
+
+    public static void print(int num) {
+        for (int i = 1; i <= num; i++) {
+            System.out.print(" " + getTribonacci(i));
+        }
+    }
+
+
 }
