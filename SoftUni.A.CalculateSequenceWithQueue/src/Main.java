@@ -17,7 +17,6 @@ public class Main {
             queue.offer(num + 2);
 
             System.out.print(queue.poll() + " ");
-
         }
     }
 }
