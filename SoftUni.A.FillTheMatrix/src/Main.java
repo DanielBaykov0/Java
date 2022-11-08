@@ -14,8 +14,6 @@ public class Main {
         } else {
             System.out.println("Wrong pattern");
         }
-
-
     }
 
     private static void matrixPatternA(int n) {
