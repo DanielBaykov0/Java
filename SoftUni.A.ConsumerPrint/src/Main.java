@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -11,11 +12,7 @@ public class Main {
 
         Consumer<List<String>> consumer = list -> list.forEach(System.out::println);
 
-        List<String> list = new ArrayList<>();
-
-        for (String s : input) {
-            list.add(s);
-        }
+        List<String> list = new ArrayList<>(Arrays.asList(input));
 
         consumer.accept(list);
     }
