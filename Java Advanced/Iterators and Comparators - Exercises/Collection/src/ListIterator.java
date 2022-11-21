@@ -1,27 +1,16 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
-public class ListIterator<T> {
+public class ListIterator<T> implements Iterable<T> {
 
     List<T> items;
     int index;
 
     public ListIterator(T... items) {
-        this.setItems(items);
+        this.items = new ArrayList<>(Arrays.asList(items));
         this.index = 0;
-    }
-
-    public List<T> getItems() {
-        return items;
-    }
-
-    public void setItems(T... items) {
-        if (items.length == 0) {
-            this.items = new ArrayList<>();
-        } else {
-            this.items = new ArrayList<>(Arrays.asList(items));
-        }
     }
 
     public boolean move() {
@@ -43,5 +32,15 @@ public class ListIterator<T> {
         } else {
             System.out.println(this.items.get(this.index));
         }
+    }
+
+    public void printAll() {
+        this.items.forEach(e -> System.out.print(e + " "));
+        System.out.println();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return this.items.iterator();
     }
 }
