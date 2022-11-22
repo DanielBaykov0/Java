@@ -46,7 +46,7 @@ public class MyLinkedList<T> implements Iterable<T>, LinkedListInterface<T> {
 
     @Override
     public boolean remove(T t) {
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < this.count; i++) {
             if (this.items[i] == t) {
                 this.count--;
                 removeFirstOccurrenceElement(i);
