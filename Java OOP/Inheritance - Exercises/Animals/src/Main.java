@@ -16,16 +16,22 @@ public class Main {
 
             Animal animal;
             try {
-                if (input. equals("Dog")) {
-                    animal = new Dog(tokens[0], Integer.parseInt(tokens[1]), tokens[2]);
-                } else if (input. equals("Cat")) {
-                    animal = new Cat(tokens[0], Integer.parseInt(tokens[1]), tokens[2]);
-                } else if (input. equals("Frog")) {
-                    animal = new Frog(tokens[0], Integer.parseInt(tokens[1]), tokens[2]);
-                } else if (input. equals("Kittens")) {
-                    animal = new Kitten(tokens[0], Integer.parseInt(tokens[1]));
-                } else {
-                    animal = new Tomcat(tokens[0], Integer.parseInt(tokens[1]));
+                switch (input) {
+                    case "Dog":
+                        animal = new Dog(tokens[0], Integer.parseInt(tokens[1]), tokens[2]);
+                        break;
+                    case "Cat":
+                        animal = new Cat(tokens[0], Integer.parseInt(tokens[1]), tokens[2]);
+                        break;
+                    case "Frog":
+                        animal = new Frog(tokens[0], Integer.parseInt(tokens[1]), tokens[2]);
+                        break;
+                    case "Kittens":
+                        animal = new Kitten(tokens[0], Integer.parseInt(tokens[1]));
+                        break;
+                    default:
+                        animal = new Tomcat(tokens[0], Integer.parseInt(tokens[1]));
+                        break;
                 }
                 animals.add(animal);
             } catch (IllegalArgumentException ex) {
