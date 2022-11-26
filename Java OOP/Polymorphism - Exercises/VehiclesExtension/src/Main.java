@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         List<Vehicle> vehiclesList = new LinkedList<>();
@@ -21,11 +21,24 @@ public class Main {
     }
 
     private static void fillVehicle(BufferedReader reader, List<Vehicle> vehiclesList) throws IOException {
-        String[] carTokens = reader.readLine().split("\\s+");
-        String[] truckTokens = reader.readLine().split("\\s+");
+        for (int i = 0; i < 3; i++) {
+            String[] tokens = reader.readLine().split("\\s+");
+            double fuelQuantity = Double.parseDouble(tokens[1]);
+            double litersPerKm = Double.parseDouble(tokens[2]);
+            double tankCapacity = Double.parseDouble(tokens[3]);
 
-        vehiclesList.add(new Car(Double.parseDouble(carTokens[1]), Double.parseDouble(carTokens[2])));
-        vehiclesList.add(new Truck(Double.parseDouble(truckTokens[1]), Double.parseDouble(truckTokens[2])));
+            switch (tokens[0]) {
+                case "Car":
+                    vehiclesList.add(new Car(fuelQuantity, litersPerKm, tankCapacity));
+                    break;
+                case "Truck":
+                    vehiclesList.add(new Truck(fuelQuantity, litersPerKm, tankCapacity));
+                    break;
+                case "Bus":
+                    vehiclesList.add(new Bus(fuelQuantity, litersPerKm, tankCapacity));
+                    break;
+            }
+        }
     }
 
     private static void executeCommand(List<Vehicle> vehiclesList, String[] commandTokens) {
@@ -38,12 +51,15 @@ public class Main {
                 case "Drive":
                     driveVehicle(vehiclesList, vehicleType, amount);
                     break;
+                case "DriveEmpty":
+                    driveEmptyVehicle(vehiclesList, amount);
+                    break;
                 case "Refuel":
                     refuelVehicle(vehiclesList, vehicleType, amount);
                     break;
             }
-        } catch (IllegalArgumentException iae) {
-            System.out.println(iae.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -58,6 +74,14 @@ public class Main {
     private static void driveVehicle(List<Vehicle> vehiclesList, String vehicleType, double amount) {
         for (Vehicle vehicle : vehiclesList) {
             if (vehicle.getClass().getSimpleName().equals(vehicleType)) {
+                System.out.println(vehicle.drive(amount));
+            }
+        }
+    }
+
+    private static void driveEmptyVehicle(List<Vehicle> vehiclesList, double amount) {
+        for (Vehicle vehicle : vehiclesList) {
+            if (vehicle.getClass().getSimpleName().equals("Bus")) {
                 System.out.println(vehicle.drive(amount));
             }
         }
